@@ -3,4 +3,8 @@ project(powerMonitoring C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(powerMonitoring main.c)
+add_executable(powerMonitoring main.c
+        waveform.c
+        waveform.h
+        io.c
+        io.h)

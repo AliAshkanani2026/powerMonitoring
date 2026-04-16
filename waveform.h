@@ -7,14 +7,14 @@
 
 // create waveform struct
 struct WaveformSample {
-     double timestamp ;
+     double time ;
      double voltageA;
      double voltageB;
      double voltageC;
      double current;
-     double frequency;
-     double power_factor;
-     double thd_percent ;
-
+     double freq;
+     double factor;
+     double percent ;
 };
 #endif //POWERMONITORING_WAVEFORM_H
+

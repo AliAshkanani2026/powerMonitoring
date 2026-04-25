@@ -16,5 +16,8 @@ struct WaveformSample {
      double factor;
      double percent ;
 };
+
+double rms_calculator( struct WaveformSample * waveformdata , int data_counter , int phase );
+double voltage_peak_peak_calculator( struct WaveformSample * waveformdata , int data_counter , int phase );
 #endif //POWERMONITORING_WAVEFORM_H
 

@@ -41,4 +41,5 @@
 
     }
     fclose(fp);
+     return waveform;
 }

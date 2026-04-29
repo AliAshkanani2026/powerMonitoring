@@ -10,11 +10,7 @@ int main(void) {
     getFileName(filename);
     struct WaveformSample *waveformdata= readFile(filename, &data_counter);
 
-
-
-
-
-
+    printf("votA %lf , voltB %lf , voltC %lf ",waveformdata[0].voltageA,waveformdata[0].voltageB,waveformdata[0].voltageC);
     return 0;
 }
 

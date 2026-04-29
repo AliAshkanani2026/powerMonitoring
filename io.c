@@ -13,14 +13,15 @@
     if (fp == NULL) {// file not valid
         printf("Error opening file invlaid file name\n");
     }
-    char data_line[100];
+    char data_line[500];
     int numberOfLines=0;
 
-    fgets (data_line,100,fp);
+    fgets (data_line,500,fp);
 
-    while (fgets (data_line,100,fp)) {
+    while (fgets (data_line,500,fp)) {
         numberOfLines++;
     }
+     printf("Number of lines read %d\n", numberOfLines);
     *data_count = numberOfLines; //update number of lines in main function
 
 
@@ -28,14 +29,16 @@
 
     rewind(fp);
 
-    fgets (data_line,100,fp);
+    fgets (data_line,500,fp);
 
     int i=0;
-    while (fgets (data_line,100,fp)) {
+    while (fgets (data_line,500,fp)) {
         sscanf(data_line ,
             "%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf",
             &waveform[i].time,&waveform[i].voltageA,&waveform[i].voltageB,&waveform[i].voltageC,&waveform[i].current,&waveform[i].freq,&waveform[i].factor,&waveform[i].percent);
-    i++;
+       // printf(" time : %lf - VoltA %lf \n ",waveform[i].time , waveform[i].voltageA);
+        i++;
+
     }
     fclose(fp);
 }

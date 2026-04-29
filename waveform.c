@@ -4,6 +4,8 @@
 
 #include "waveform.h"
 #include <math.h>
+#include <stdio.h>
+
 double rms_calculator( struct WaveformSample * waveformdata , int data_counter , int phase ) {
     double sumValues = 0;
     double Voltage_Value=0;
@@ -75,4 +77,64 @@ double voltage_peak_peak_calculator( struct WaveformSample * waveformdata , int 
     }
     return vpp;
 
+}
+
+double dc_offset_calculator( struct WaveformSample * waveformdata , int data_counter, int phase ) {
+    double sumValues = 0;
+    double Voltage_Value=0;
+    for (int i = 0 ; i <data_counter ; i++) {
+        if (phase == 1) //a
+        {
+            Voltage_Value = (waveformdata +i)->voltageA;
+            sumValues=sumValues+Voltage_Value;
+        }
+        if (phase == 2) //b
+        {
+            Voltage_Value = (waveformdata +i)->voltageB;
+            sumValues=sumValues+Voltage_Value;
+        }
+        if (phase == 3) //c
+        {
+            Voltage_Value = (waveformdata +i)->voltageC;
+            sumValues=sumValues+Voltage_Value;
+        }
+    }
+    return sumValues/data_counter;//dc offset
+}
+
+int detect_clipping( struct WaveformSample * waveformdata , int data_counter, int phase ) {
+    int clippings=0;
+    double Voltage_Value=0;
+    for (int i = 0 ; i <data_counter ; i++) {
+        if (phase == 1) //a
+        {
+            Voltage_Value = (waveformdata + i)->voltageA;
+            printf("Voltage_Value is %lf \n",Voltage_Value);
+            if (  fabs(Voltage_Value) >= 324.9) {
+                clippings++;
+                printf("clipping found at %d\n",i);
+            }
+
+        }
+        if (phase == 2) //b
+        {
+            Voltage_Value = (waveformdata +i)->voltageB;
+            if (fabs(Voltage_Value) >= 324.9) {
+                clippings++;
+                printf("clipping found at %d\n",i);
+            }
+
+        }
+        if (phase == 3) //c
+        {
+            Voltage_Value = (waveformdata +i)->voltageC;
+            if (fabs(Voltage_Value) >= 324.9) {
+                clippings++;
+                printf("clipping found at %d\n",i);
+            }
+
+        }
+
+    }
+    return clippings;
 }

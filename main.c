@@ -2,20 +2,12 @@
 #include <stdlib.h>
 #include "io.h"
 #include "waveform.h"
-void getFileName(char *filename);
-int main(void) {
+int main(int argc, char *argv[]) {
     //main function
     int data_counter;
-    char filename[50]; //array of char 50 char max
-    getFileName(filename);
+    char * filename =argv[1];
     struct WaveformSample *waveformdata= readFile(filename, &data_counter);
-
-    printf("votA %lf , voltB %lf , voltC %lf ",waveformdata[0].voltageA,waveformdata[0].voltageB,waveformdata[0].voltageC);
+    ExportResultToFile("result.txt",waveformdata,data_counter);
+    free(waveformdata);
     return 0;
 }
-
-void getFileName(char * filename) {
-    printf("Enter your csv file name including the extension \n");
-    scanf("%s",filename);
-}
-

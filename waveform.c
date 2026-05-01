@@ -109,10 +109,8 @@ int detect_clipping( struct WaveformSample * waveformdata , int data_counter, in
         if (phase == 1) //a
         {
             Voltage_Value = (waveformdata + i)->voltageA;
-            printf("Voltage_Value is %lf \n",Voltage_Value);
             if (  fabs(Voltage_Value) >= 324.9) {
                 clippings++;
-                printf("clipping found at %d\n",i);
             }
 
         }
@@ -121,7 +119,6 @@ int detect_clipping( struct WaveformSample * waveformdata , int data_counter, in
             Voltage_Value = (waveformdata +i)->voltageB;
             if (fabs(Voltage_Value) >= 324.9) {
                 clippings++;
-                printf("clipping found at %d\n",i);
             }
 
         }
@@ -130,11 +127,16 @@ int detect_clipping( struct WaveformSample * waveformdata , int data_counter, in
             Voltage_Value = (waveformdata +i)->voltageC;
             if (fabs(Voltage_Value) >= 324.9) {
                 clippings++;
-                printf("clipping found at %d\n",i);
             }
 
         }
 
     }
     return clippings;
+}
+char checkRmsTolerance(double rms) {
+    if (rms > 206 && rms < 254)
+        return 'y' ; //within correct limit
+    else
+        return 'n';// no in correct limit
 }

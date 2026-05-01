@@ -5,5 +5,6 @@
 #ifndef POWERMONITORING_IO_H
 #define POWERMONITORING_IO_H
 
- struct WaveformSample * readFile(char * filename , int *data_count);
+struct WaveformSample * readFile(char * filename , int *data_count);
+void ExportResultToFile(char * filename , struct WaveformSample * waveformdata,int data_counter);
 #endif //POWERMONITORING_IO_H

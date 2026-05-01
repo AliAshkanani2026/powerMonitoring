@@ -21,5 +21,6 @@ double rms_calculator( struct WaveformSample * waveformdata , int data_counter ,
 double voltage_peak_peak_calculator( struct WaveformSample * waveformdata , int data_counter , int phase );
 double dc_offset_calculator( struct WaveformSample * waveformdata , int data_counter, int phase );
 int detect_clipping( struct WaveformSample * waveformdata , int data_counter, int phase );
+char checkRmsTolerance(double rms);
 #endif //POWERMONITORING_WAVEFORM_H
 

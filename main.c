@@ -8,6 +8,5 @@ int main(int argc, char *argv[]) {
     char * filename =argv[1];
     struct WaveformSample *waveformdata= readFile(filename, &data_counter);
     ExportResultToFile("result.txt",waveformdata,data_counter);
-    free(waveformdata);
     return 0;
 }
